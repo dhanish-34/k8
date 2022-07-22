@@ -1,0 +1,35 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: fitnessapp
+  labels:
+    app: fitnessapp
+spec:
+  selector:
+    matchLabels:
+      app: fitnessapp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: fitnessapp
+    spec:
+      containers:
+      - image: dhanish34/dhanish-flask-app:latest
+        name: fitnessapp
+        env:
+        - name: DATABASE_URI
+          valueFrom:
+            configMapKeyRef:
+              name: db-uri
+              key: db-uri
+        ports:
+        - containerPort: 80
+          name: fitnessapp
+        volumeMounts:
+        - name: web-storage
+          mountPath: /var/www/html
+      volumes:
+      - name: web-storage
+        emptyDir: {}

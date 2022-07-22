@@ -1,0 +1,7 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata:
+  name: db-uri 
+data:
+  db-uri: 'mysql://admin:helloworld@mysql/fitness'
+

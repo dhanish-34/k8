@@ -1,0 +1,7 @@
+bases:
+- ../../base
+- ./mysql
+patchesStrategicMerge:
+- localserver.yaml
+- configmap.yaml
+
